@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
+import math
 import pickle
 
 from utils import similarity
@@ -37,7 +38,7 @@ def get_movie_details(genre):
 
 def showing_movie_details(num_movies,movie_titles,movie_posters):
     num_columns = 5
-    num_rows = num_movies // 5
+    num_rows = math.ceil(num_movies / 5)
 
     for row_index in range(num_rows):
         cols = st.columns(num_columns)
@@ -79,11 +80,10 @@ def load_genre_wise_popular_movies():
     if btn2:
         movies_in_genre = len(genres_group[selected_genre])
 
-        if movies_in_genre > num_movies:
-            st.markdown(f'**{movies_in_genre} Movies** in this genre, showing you **{num_movies} Movies**')
-        else:
-            st.markdown(f'**{movies_in_genre} Movies** in this genre, showing you **{movies_in_genre} Movies**')
+        if movies_in_genre < num_movies:
+            num_movies = movies_in_genre
 
+        st.markdown(f'**{movies_in_genre} Movies** in this genre, showing you **{num_movies} Movies**')
         movie_ids, movie_titles = get_movie_details(selected_genre)
         movie_ids, movie_titles = movie_ids[:num_movies], movie_titles[:num_movies]
         movie_posters = poster_fetch(movie_ids)
