@@ -103,14 +103,15 @@ st.set_page_config(page_title='Movie Recommender')
 st.title('Movie Recommendation System')
 
 option = st.selectbox('Select what you want',['Get Recommendation for Movies','Popular Movies'])
-
+st.write("")
+st.write("")
 if option == 'Get Recommendation for Movies':
     load_recommended_movies()
 
 if option == 'Popular Movies':
     st.header('Popular Movies')
     option2 = st.selectbox('Select one',['Overall Popular Movies','Genre-wise Popular Movies'])
-
+    st.write("")
     if option2 == 'Genre-wise Popular Movies':
         load_genre_wise_popular_movies()
 
