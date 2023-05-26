@@ -78,7 +78,12 @@ def load_genre_wise_popular_movies():
     btn2 = st.button('Submit')
     if btn2:
         movies_in_genre = len(genres_group[selected_genre])
-        st.markdown(f'**{movies_in_genre} Movies** in this genre, showing you **{num_movies} Movies**')
+
+        if movies_in_genre > num_movies:
+            st.markdown(f'**{movies_in_genre} Movies** in this genre, showing you **{num_movies} Movies**')
+        else:
+            st.markdown(f'**{movies_in_genre} Movies** in this genre, showing you **{movies_in_genre} Movies**')
+
         movie_ids, movie_titles = get_movie_details(selected_genre)
         movie_ids, movie_titles = movie_ids[:num_movies], movie_titles[:num_movies]
         movie_posters = poster_fetch(movie_ids)
@@ -103,9 +108,6 @@ st.set_page_config(page_title='Movie Recommender')
 st.title('Movie Recommendation System')
 
 option = st.selectbox('Select what you want',['Get Recommendation for Movies','Popular Movies'])
-st.write("")
-st.write("")
-st.write("")
 
 if option == 'Get Recommendation for Movies':
     load_recommended_movies()
@@ -113,9 +115,7 @@ if option == 'Get Recommendation for Movies':
 if option == 'Popular Movies':
     st.header('Popular Movies')
     option2 = st.selectbox('Select one',['Overall Popular Movies','Genre-wise Popular Movies'])
-    st.write("")
-    st.write("")
-    st.write("")
+
     if option2 == 'Genre-wise Popular Movies':
         load_genre_wise_popular_movies()
 
