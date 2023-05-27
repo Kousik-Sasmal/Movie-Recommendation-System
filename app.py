@@ -13,18 +13,26 @@ new_df = pd.read_csv('artifacts/new_df.csv')
 
 
 def recommend(movie):
-    movies = []
-    movie_id = []
+    """
+    Takes a `movie` and recommend 6 movies include that movie.
+    Return the tuple of two lists  `movie_ids` and `movie_titles`.
+    """
+    movie_titles = []
+    movie_ids = []
     index = new_df[new_df['title'] == movie].index[0]
     distances = sorted(list(enumerate(similarity[index])),reverse=True,key = lambda x: x[1])
     for i in distances[:6]:
-        movies.append(new_df.iloc[i[0]].title)
-        movie_id.append(new_df.iloc[i[0]].movie_id)
+        movie_titles.append(new_df.iloc[i[0]].title)
+        movie_ids.append(new_df.iloc[i[0]].movie_id)
         
-    return movies,movie_id
+    return movie_ids,movie_titles
 
 
 def get_movie_details(genre):
+    """"
+    Takes any specific `genre`.
+    Return the tuple of two lists  `movie_ids` and `movie_titles`.
+    """
     movie_ids = []
     movie_titles = []
     for i in range(len(genres_group[genre])):
@@ -37,7 +45,12 @@ def get_movie_details(genre):
 
 
 def showing_movie_details(num_movies,movie_titles,movie_posters):
+    """
+    Takes 3 inputs: `num_movies`, `movie_titles`, `movie_posters`.
+    Shows `movie_titles` and `movie_posters` to user.
+    """
     num_columns = 5
+    # if the number of available movies is not the multiple of 5 
     num_rows = math.ceil(num_movies / 5)
 
     for row_index in range(num_rows):
@@ -54,13 +67,14 @@ def showing_movie_details(num_movies,movie_titles,movie_posters):
                 break
 
 
+
 def load_recommended_movies():
     st.header('Recommended Movies')
 
     selected_movie = st.selectbox('Select a movie',new_df['title'].tolist())
     btn1 = st.button('Recommend')
     if btn1:
-        movies,ids = recommend(selected_movie)
+        ids,movies = recommend(selected_movie)
         poster_image_urls = poster_fetch(ids)
 
         cols = st.columns(6)
@@ -71,6 +85,7 @@ def load_recommended_movies():
 
 def load_genre_wise_popular_movies():
     st.header('Genre-wise Popular Movies')
+    
     unique_genres = list(set(popular_df['genres'].explode()))
     unique_genres.remove(np.nan)
 
@@ -79,7 +94,7 @@ def load_genre_wise_popular_movies():
     btn2 = st.button('Submit')
     if btn2:
         movies_in_genre = len(genres_group[selected_genre])
-
+        # if number of movies asked is greater than the available movies in a specific genre
         if movies_in_genre < num_movies:
             num_movies = movies_in_genre
 
