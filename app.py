@@ -14,8 +14,8 @@ new_df = pd.read_csv('artifacts/new_df.csv')
 
 def recommend(movie):
     """
-    Takes a `movie` and recommend 6 movies include that movie.
-    Return the tuple of two lists  `movie_ids` and `movie_titles`.
+    Takes a title of a `movie` and recommend 6 movies include that movie.
+    Returns the tuple of two lists  `movie_ids` and `movie_titles`.
     """
     movie_titles = []
     movie_ids = []
@@ -31,7 +31,7 @@ def recommend(movie):
 def get_movie_details(genre):
     """"
     Takes any specific `genre`.
-    Return the tuple of two lists  `movie_ids` and `movie_titles`.
+    Returns the tuple of two lists  `movie_ids` and `movie_titles`.
     """
     movie_ids = []
     movie_titles = []
