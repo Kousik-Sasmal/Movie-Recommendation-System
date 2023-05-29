@@ -10,6 +10,7 @@ from utils import poster_fetch
 popular_df = pickle.load(open('artifacts/popular_df.pkl','rb'))
 genres_group = pickle.load(open('artifacts/genres_group.pkl','rb'))
 new_df = pd.read_csv('artifacts/new_df.csv')
+google_url_df = pd.read_csv('artifacts/google_url_df.csv')
 
 
 def recommend(movie):
@@ -59,10 +60,12 @@ def showing_movie_details(num_movies,movie_titles,movie_posters):
         for col_index, col in enumerate(cols):
             movie_index = row_index * num_columns + col_index
 
+            google_link = google_url_df[google_url_df['title'] == movie_titles[movie_index]]['google_url'].values[0]
             if movie_index < len(popular_df[:num_movies]):
                 with col:
                     col.image(movie_posters[movie_index])
                     col.markdown(f"**{movie_titles[movie_index]}**")  # title
+                    col.write(google_link)
             else:
                 break
 
@@ -79,8 +82,11 @@ def load_recommended_movies():
 
         cols = st.columns(6)
         for i in range(6):
+            google_link = google_url_df[google_url_df['title'] == movies[i]]['google_url'].values[0]
+                
             cols[i].image(poster_image_urls[i])
             cols[i].write(f"**{movies[i]}**")  #title
+            cols[i].write(google_link)
 
 
 def load_genre_wise_popular_movies():
