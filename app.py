@@ -98,7 +98,7 @@ def load_genre_wise_popular_movies():
         if movies_in_genre < num_movies:
             num_movies = movies_in_genre
 
-        st.markdown(f'**{movies_in_genre} Movies** in this genre, showing you **{num_movies} Movies**')
+        st.markdown(f'**{movies_in_genre} Movies** in the {selected_genre} genre, showing you **{num_movies} Movies**')
         movie_ids, movie_titles = get_movie_details(selected_genre)
         movie_ids, movie_titles = movie_ids[:num_movies], movie_titles[:num_movies]
         movie_posters = poster_fetch(movie_ids)
