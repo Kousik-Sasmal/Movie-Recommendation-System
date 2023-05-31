@@ -15,9 +15,7 @@ With the help of those analysis, created `app.py` which consists of mainly two f
       - Genre-wise Popular Movies
 
 
-`utils.py`: Codes for fetching the Movie Poster from https://developer.themoviedb.org/ with the help of API. 
-            
-            Calculate `cosine similarity`.
+`utils.py`: Codes for fetching the Movie Poster from https://developer.themoviedb.org/ with the help of API, and for Calculating `cosine similarity`.
             
 
 `poster_image_url.json`: A temporary database.
