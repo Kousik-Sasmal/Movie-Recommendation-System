@@ -9,13 +9,13 @@ All the analysis has been done in `Jupyter notebook`, and those files are kept i
 All the files generated after analysis are kept in the `artifacts` folder.
 
 With the help of those analysis, created `app.py` which consists of mainly two functionality.
-  - Shows Recommendation for Movies
-  - Shows Popular Movies
+  - Shows Recommendation for Movies (`Content-based filtering`)
+  - Shows Popular Movies (`Popularity-based filtering`)
       - Overall Popular Movies
       - Genre-wise Popular Movies
 
 
-`utils.py`: Codes for fetching the Movie Poster from https://developer.themoviedb.org/ with the help of API, and for Calculating `cosine similarity`.
+`utils.py`: Codes for fetching the Movie Poster from https://developer.themoviedb.org/ with the help of API, and for calculating Cosine similarity`.
             
 
 `poster_image_url.json`: A temporary database.
