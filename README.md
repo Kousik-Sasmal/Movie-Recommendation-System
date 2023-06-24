@@ -6,7 +6,7 @@ Using the https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata data, I have 
 
 My App link: https://kousik-sasmal-movie-recommendation-system-app-46mgfp.streamlit.app/
 
-### 
+--------------------------------------------------------------------------------------------------------------
 All the analysis has been done in `Jupyter notebook`, and those files are kept in the `notebooks` folder. All the files generated after analysis are kept in the `artifacts` folder.
 
 With the help of those analysis, created `app.py` which consists of mainly two functionality.
