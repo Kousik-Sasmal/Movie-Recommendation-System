@@ -4,7 +4,7 @@
 Using the https://www.kaggle.com/datasets/tmdb/tmdb-movie-metadata data, I have created a `Movie Recommendation System` and converted into `Streamlit` web app.
 
 
-My App link: https://kousik-sasmal-movie-recommendation-system-app-46mgfp.streamlit.app/
+App link: https://kousik-sasmal-movie-recommendation-system-app-46mgfp.streamlit.app/
 
 --------------------------------------------------------------------------------------------------------------
 All the analysis has been done in `Jupyter notebook`, and those files are kept in the `notebooks` folder. All the files generated after analysis are kept in the `artifacts` folder.
